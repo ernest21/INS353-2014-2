@@ -41,17 +41,11 @@ class Triangle
   end
 
   def violates_inequality?
-    if !(@a+@b > @c)
-      true
-    elsif !(@b+@c > @a)
-      true
-    elsif !(@c+@a > @b)
-      true
-    end
+    a+b <= c or b+c <= a or c+b <= b
   end
 
   def impossible_length_side?
-    @a < 1 or @b < 1 or @c < 1
+    sides.any? {|side| side <= 0 }
   end
 end
 
