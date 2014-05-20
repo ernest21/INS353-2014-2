@@ -50,6 +50,7 @@ class Triangle
   end
 
   def impossible_length_side?
+    @a < 1 or @b < 1 or @c < 1
   end
 
 end
@@ -64,12 +65,15 @@ describe Triangle do
   context "with incorrect params" do
     it "should throw an error" do
       expect {Triangle.new(6,8,16)}.to raise_error TriangleError
+      expect {Triangle.new(6,-9,0)}.to raise_error TriangleError
     end
   end
 
   describe "#kind" do
     context "with correct params" do
       it "should be true" do
+        trian = Triangle.new 10,30,30
+        expect{trian.kind}.to eql(:isosceles)
         expect(Triangle.new(50,50,50).kind).to eql(:equilateral)
         expect(Triangle.new(50,30,50).kind).to eql(:isosceles)
         expect(Triangle.new(50,40,30).kind).to eql(:scalene)
@@ -77,3 +81,12 @@ describe Triangle do
     end
   end
 end
+
+if condition
+...
+elsif
+..
+else 
+  "not valid"
+end 
+
