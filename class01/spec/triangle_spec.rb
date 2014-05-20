@@ -8,10 +8,11 @@ class Triangle
     @a = a
     @b = b
     @c = c
-    illegal?
+   raise TypeError unless a.is_a? Numeric and b.is_a? Numeric and c.is_a? Numeric
   end
 
   def kind
+    raise TriangleError if illegal?
     if equilateral?
       :equilateral
     elsif isosceles?
@@ -36,8 +37,7 @@ class Triangle
   end
 
   def illegal?
-    raise TriangleError if violates_inequality? or impossible_length_side?
-    raise TriangleError unless @a.is_a? Numeric and @b.is_a? Numeric and @c.is_a? Numeric
+    violates_inequality? or impossible_length_side?
   end
 
   def violates_inequality?
