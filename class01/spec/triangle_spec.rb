@@ -24,14 +24,15 @@ class Triangle
   private
 
   def sides
+    @sides ||= [a,b,c]
   end
 
   def equilateral?
-    @a==@b and @a ==@c
+    sides.uniq.size == 1
   end
 
   def isosceles?
-    @a == @b or @a == @c or @b == @c
+    sides.uniq.size == 2
   end
 
   def illegal?
@@ -52,7 +53,6 @@ class Triangle
   def impossible_length_side?
     @a < 1 or @b < 1 or @c < 1
   end
-
 end
 
 describe Triangle do
@@ -72,8 +72,6 @@ describe Triangle do
   describe "#kind" do
     context "with correct params" do
       it "should be true" do
-        trian = Triangle.new 10,30,30
-        expect{trian.kind}.to eql(:isosceles)
         expect(Triangle.new(50,50,50).kind).to eql(:equilateral)
         expect(Triangle.new(50,30,50).kind).to eql(:isosceles)
         expect(Triangle.new(50,40,30).kind).to eql(:scalene)
@@ -81,12 +79,3 @@ describe Triangle do
     end
   end
 end
-
-if condition
-...
-elsif
-..
-else 
-  "not valid"
-end 
-
