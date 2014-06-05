@@ -49,7 +49,10 @@ describe Post do
   end
 
   describe "#same?" do
-    it "should return true if Title, Date and Text are the same"
+    it "should return true if Title, Date and Text are the same" do
+      p = Post.new( @user,"Tittle", "Test Test Test"*10,"2014-6-5")
+      expect(@post.same? p).to be(true)
+    end
     it "should return false if Title, Date and Text are not the same"
   end
 
