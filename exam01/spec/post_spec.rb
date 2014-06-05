@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Post do
   before :all do
     user = User.new ("ernest")
-    entry = Post.new( user,"Tittle", "Test Test Test","2014-6-5",["test","entry"])
+    entry = Post.new( user,"Tittle", "Test Test Test","2014-6-5")
     File.open "post.yml", 'w' do |f|
       f.write YAML::dump entry
     end
@@ -11,7 +11,7 @@ describe Post do
 
   before(:each) do
     @user = User.new ("ernest")
-    @post = Post.new( @user,"Tittle", "Test Test Test","2014-6-5",["test","entry"])
+    @post = Post.new( @user,"Tittle", "Test Test Test","2014-6-5")
   end
 
   describe "#initialize" do
