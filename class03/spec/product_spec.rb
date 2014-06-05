@@ -2,12 +2,16 @@ require 'spec_helper.rb'
 
 describe Product do
 
-	before :each do
+	before :all do
+		@product = Product.new "Manzana", 9.99, :fruta
 	end
-
 	describe "When creating a new a product" do
 		context "With valid parameters" do
-			it "should take 3 parameters and return a product object"
+			it "should take 3 parameters and return a product object" do
+					subject { @product }
+
+				it{ should be_kind_of(Product)}
+			end
 		end
 	end
 
