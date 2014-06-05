@@ -1,8 +1,11 @@
+require_relative 'user.rb'
+require 'yaml'
+
 class Post
   attr_accessor :user, :date, :title, :text, :tags
   def initialize (*args)
     if args.size == 1
-      load_yml path
+      load_yml args[0]
     elsif args.size == 4
       @user = args[0]
       @title = args[1]
@@ -14,8 +17,30 @@ class Post
     end
     @tags =  []
   end
+  def summary
 
+  end
+  def tagme
+
+  end
+
+  def same?
+
+  end
+
+  def display_entry
+
+  end
+
+  def save
+
+  end
   private
   def load_yml path
+    bloag_ylm = YAML.load_file(path)
+    @user = bloag_ylm.user
+    @title = bloag_ylm.title
+    @text = bloag_ylm.text
+    @date = bloag_ylm.date
   end
 end
