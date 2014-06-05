@@ -18,22 +18,26 @@ describe User do
 
   describe "#list" do
     it "should properly ouput all posts" do
-      prueba =%Q(ernest, 2014-6-5
-Title
-#{"Test Test Test"*10}
-Tags: test, post
-
-ernest, 2014-6-6
+      prueba =%Q(ernest, 2014-6-6
 My awsome post
 #{"Lalala LALA laa "*10}
 Tags:
+
+ernest, 2014-6-5
+Title
+#{"Test Test Test"*10}
+Tags: test, post
 )
+    @user.add_post "2014-6-5","Test Test Test"*10,"Title"
     expect { @user.list}.to output(prueba).to_stdout
     end
   end
 
   describe "#find_post_by_title" do
-    it "should return a post by title"
+    it "should return a post by title" do
+      p= Post.new @user, "My awsome post", "Lalala LALA laa "*10, "2014-6-6"
+      expect(@user.find_post_by_title ("My awsome post") ).to match(p)
+    end
     it "should return the first one if there are several with the same name"
   end
 
