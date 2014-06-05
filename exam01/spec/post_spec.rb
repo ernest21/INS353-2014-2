@@ -19,14 +19,14 @@ describe Post do
       it "should properly load a post from a yaml file" do
         post= Post.new "post.yml"
         expect(post).to be_instance_of(Post)
-        expect(post).to respond_to(:summary, :tagme, :same, :display_entry, :save,:user, :date, :title, :text, :tags)
+        expect(post).to respond_to(:summary, :tagme, :same?, :display_entry, :save,:user, :date, :title, :text, :tags)
       end
     end
 
     context "with proper attributes" do
       it "should properly initialize a post instance" do
         expect(@post).to be_instance_of(Post)
-        expect(@post).to respond_to(:summary, :tagme, :same, :display_entry, :save,:user, :date, :title, :text, :tags)
+        expect(@post).to respond_to(:summary, :tagme, :same?, :display_entry, :save,:user, :date, :title, :text, :tags)
       end
     end
 
