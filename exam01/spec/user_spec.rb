@@ -17,7 +17,19 @@ describe User do
   end
 
   describe "#list" do
-    it "should properly ouput all posts"
+    it "should properly ouput all posts" do
+      prueba =%Q(ernest, 2014-6-5
+Title
+#{"Test Test Test"*10}
+Tags: test, post
+
+ernest, 2014-6-6
+My awsome post
+#{"Lalala LALA laa "*10}
+Tags:
+)
+    expect { @user.list}.to output(prueba).to_stdout
+    end
   end
 
   describe "#find_post_by_title" do
