@@ -9,6 +9,11 @@ describe Post do
     end
   end
 
+  before(:each) do
+    @user = User.new ("ernest")
+    @post = Post.new( @user,"Tittle", "Test Test Test","2014-6-5",["test","entry"])
+  end
+
   describe "#initialize" do
     context "with a yaml file" do
       it "should properly load a post from a yaml file" do
@@ -19,7 +24,10 @@ describe Post do
     end
 
     context "with proper attributes" do
-      it "should properly initialize a post instance"
+      it "should properly initialize a post instance" do
+        expect(@post).to be_instance_of(Post)
+        expect(@post).to respond_to(:summary, :tagme, :same, :display_entry, :save,:user, :date, :title, :text, :tags)
+      end
     end
 
   end
