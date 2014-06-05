@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Post do
   before :all do
     user = User.new ("ernest")
-    entry = Post.new( user,"Tittle", "Test Test Test","2014-6-5")
+    entry = Post.new( user,"Title", "Test Test Test","2014-6-5")
     File.open "post.yml", 'w' do |f|
       f.write YAML::dump entry
     end
@@ -11,7 +11,7 @@ describe Post do
 
   before(:each) do
     @user = User.new ("ernest")
-    @post = Post.new( @user,"Tittle", "Test Test Test"*10,"2014-6-5")
+    @post = Post.new( @user,"Title", "Test Test Test"*10,"2014-6-5")
   end
 
   describe "#initialize" do
@@ -50,21 +50,33 @@ describe Post do
 
   describe "#same?" do
     it "should return true if Title, Date and Text are the same" do
-      p = Post.new( @user,"Tittle", "Test Test Test"*10,"2014-6-5")
+      p = Post.new( @user,"Title", "Test Test Test"*10,"2014-6-5")
       expect(@post.same? p).to be(true)
     end
     it "should return false if Title, Date and Text are not the same" do
-      p = Post.new( @user,"Tittle", "Test"*10,"2013-6-8")
+      p = Post.new( @user,"Title", "Test"*10,"2013-6-8")
       expect(@post.same? p).to be(false)
     end
   end
 
   describe "#display_entry" do
-    it "should properly output a post entry"
+    it "should properly output a post entry" do
+      prueba =%Q(ernest, 2014-6-5
+Title
+#{"Test Test Test"*10}
+Tags: test, post
+)
+      @post.tagme :test, :post
+       expect { @post.display_entry}.to output(prueba).to_stdout
+    end
   end
 
   describe "#save" do
-    it "should save the post to a YAML file"
+    it "should save the post to a YAML file" do
+      @post.save
+      p = Post.new "title.yml"
+      expect(@post).to match(p)
+    end
   end
 
 end
