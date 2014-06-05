@@ -30,11 +30,16 @@ class Post
   end
 
   def display_entry
-
+    puts %Q(#{self.user.user_name}, #{self.date}
+#{self.title}
+#{self.text}
+Tags: #{tags.join(", ")})
   end
 
   def save
-
+    File.open title.downcase.gsub(/\s+/, "-")+".yml", 'w' do |f|
+        f.write YAML::dump self
+      end
   end
 
   def <=> other
@@ -43,10 +48,10 @@ class Post
 
   private
   def load_yml path
-    bloag_ylm = YAML.load_file(path)
-    @user = bloag_ylm.user
-    @title = bloag_ylm.title
-    @text = bloag_ylm.text
-    @date = bloag_ylm.date
+    blog_yaml = YAML.load_file path
+    @title= blog_yaml.title
+    @text= blog_yaml.text
+    @date= blog_yaml.date
+    @user= blog_yaml.user
   end
 end
