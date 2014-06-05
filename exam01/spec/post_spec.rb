@@ -11,7 +11,7 @@ describe Post do
 
   before(:each) do
     @user = User.new ("ernest")
-    @post = Post.new( @user,"Tittle", "Test Test Test","2014-6-5")
+    @post = Post.new( @user,"Tittle", "Test Test Test"*10,"2014-6-5")
   end
 
   describe "#initialize" do
@@ -32,7 +32,9 @@ describe Post do
 
   end
   describe "#summary" do
-    it "should display the first 10 words of text"
+    it "should display the first 10 words of text" do
+      expect(@post.summary.split.size).to eql(10)
+    end
   end
 
   describe "#tagme" do
