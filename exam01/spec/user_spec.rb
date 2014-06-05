@@ -1,9 +1,12 @@
 require 'spec_helper'
 
 describe User do
+  before(:all) {@user = User.new "ernest"}
 
   describe "#initialize" do
-    it "should properly initialize with an username"
+    it "should properly initialize with an username" do
+      expect(@user).to be_instance_of(User)
+    end
   end
 
   describe "#add_post" do
