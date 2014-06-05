@@ -38,8 +38,14 @@ describe Post do
   end
 
   describe "#tagme" do
-    it "should be able to tag with 1 tag"
-    it "should be able to tag with 4 tags"
+    it "should be able to tag with 1 tag" do
+      @post.tagme :test
+      expect(@post.tags.size).to eql(1)
+    end
+    it "should be able to tag with 4 tags" do
+      @post.tagme :test, :entry, :lla, :tag
+      expect(@post.tags.size).to eql(4)
+    end
   end
 
   describe "#same?" do
