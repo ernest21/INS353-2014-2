@@ -21,7 +21,7 @@ class Post
     text.split[0,10].join(" ")
   end
   def tagme (*args)
-    tags = args
+    args.each {|tag| tags << tag}
   end
 
   def same?
