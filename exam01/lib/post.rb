@@ -2,6 +2,7 @@ require_relative 'user.rb'
 require 'yaml'
 
 class Post
+  include Comparable
   attr_accessor :user, :date, :title, :text, :tags
   def initialize (*args)
     if args.size == 1
@@ -24,8 +25,8 @@ class Post
     args.each {|tag| tags << tag}
   end
 
-  def same?
-
+  def same? other
+    self == other
   end
 
   def display_entry
@@ -35,6 +36,11 @@ class Post
   def save
 
   end
+
+  def <=> other
+    [self.title, self.text, self.date] <=> [other.title, other.text, other.date]
+  end
+
   private
   def load_yml path
     bloag_ylm = YAML.load_file(path)
