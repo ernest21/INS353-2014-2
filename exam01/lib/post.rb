@@ -18,10 +18,10 @@ class Post
     @tags =  []
   end
   def summary
-
+    text.split[0,10].join(" ")
   end
-  def tagme
-
+  def tagme (*args)
+    tags = args
   end
 
   def same?
