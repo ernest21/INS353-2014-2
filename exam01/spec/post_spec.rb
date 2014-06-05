@@ -53,7 +53,10 @@ describe Post do
       p = Post.new( @user,"Tittle", "Test Test Test"*10,"2014-6-5")
       expect(@post.same? p).to be(true)
     end
-    it "should return false if Title, Date and Text are not the same"
+    it "should return false if Title, Date and Text are not the same" do
+      p = Post.new( @user,"Tittle", "Test"*10,"2013-6-8")
+      expect(@post.same? p).to be(false)
+    end
   end
 
   describe "#display_entry" do
