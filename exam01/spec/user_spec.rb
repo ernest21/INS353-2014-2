@@ -10,7 +10,10 @@ describe User do
   end
 
   describe "#add_post" do
-    it "should add a post to the posts list"
+    it "should add a post to the posts list" do
+      @user.add_post "2014-6-6", "Lalala LALA laa "*10, "My awsome post"
+      expect(@user.posts.size).to eql(1)
+    end
   end
 
   describe "#list" do
