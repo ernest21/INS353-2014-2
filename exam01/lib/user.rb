@@ -9,4 +9,8 @@ class User
     post = Post.new self, title,text,date
     posts << posts
   end
+
+  def list
+    @posts.each{|post| post.display_entry}
+  end
 end
