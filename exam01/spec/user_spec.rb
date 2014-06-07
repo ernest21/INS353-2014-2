@@ -51,5 +51,4 @@ describe User do
       expect(u.tag_cloud).to match(hash_test)
     end
   end
-
 end
