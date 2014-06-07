@@ -12,11 +12,11 @@ class Post
       @title = args[1]
       @text = args[2]
       @date = args[3]
-
+      @tags = []
     else
       raise ArgumentError
     end
-    @tags =  []
+
   end
   def summary
     text.split[0,10].join(" ")
@@ -45,7 +45,6 @@ Tags: #{tags.join(", ")})
   def <=> other
     [self.title, self.text, self.date] <=> [other.title, other.text, other.date]
   end
-
   private
   def load_yml path
     blog_yaml = YAML.load_file path
@@ -53,5 +52,6 @@ Tags: #{tags.join(", ")})
     @text= blog_yaml.text
     @date= blog_yaml.date
     @user= blog_yaml.user
+    @tags = blog_yaml.tags
   end
 end
