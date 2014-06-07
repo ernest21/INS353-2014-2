@@ -19,7 +19,7 @@ describe User do
 
   describe "#list" do
     it "should properly ouput all posts" do
-      prueba =%Q("ernest, 2014-6-6\nMy awsome post\nLalala LALA laa Lalala LALA laa Lalala LALA laa Lalala LALA laa Lalala LALA laa Lalala LALA laa Lalala LALA laa Lalala LALA laa Lalala LALA laa Lalala LALA laa \nTags: test, la, post\nernest, 2014-6-5\nTitle\nTest Test TestTest Test TestTest Test TestTest Test TestTest Test TestTest Test TestTest Test TestTest Test TestTest Test TestTest Test Test\nTags: test, entry, tag, post\n)
+      prueba =%Q(ernest, 2014-6-6\nMy awsome post\nLalala LALA laa Lalala LALA laa Lalala LALA laa Lalala LALA laa Lalala LALA laa Lalala LALA laa Lalala LALA laa Lalala LALA laa Lalala LALA laa Lalala LALA laa \nTags: test, la, post\nernest, 2014-6-5\nTitle\nTest Test TestTest Test TestTest Test TestTest Test TestTest Test TestTest Test TestTest Test TestTest Test TestTest Test TestTest Test Test\nTags: test, entry, tag, post\n)
     @user.add_post "2014-6-5","Test Test Test"*10,"Title"
     @user.find_post_by_title "title"
      @user.posts.last.tagme :test, :entry, :tag, :post
