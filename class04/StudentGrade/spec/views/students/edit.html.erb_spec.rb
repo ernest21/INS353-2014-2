@@ -1,17 +1,17 @@
 require 'rails_helper'
 
-RSpec.describe "students/new", :type => :view do
+RSpec.describe "students/edit", :type => :view do
   before(:each) do
-    assign(:student, Student.new(
+    @student = assign(:student, Student.create!(
       :name => "MyString",
       :university_id => ""
     ))
   end
 
-  it "renders new student form" do
+  it "renders the edit student form" do
     render
 
-    assert_select "form[action=?][method=?]", students_path, "post" do
+    assert_select "form[action=?][method=?]", student_path(@student), "post" do
 
       assert_select "input#student_name[name=?]", "student[name]"
 
