@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20140710145920) do
 
   create_table "students", force: true do |t|
     t.string   "name"
-    t.string   "university_id"
+    t.integer  "university_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
