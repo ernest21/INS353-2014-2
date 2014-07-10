@@ -11,6 +11,9 @@ Rails.application.routes.draw do
 
   get 'students/destroy'
 
+  match "/students/new", to:'students#new' , via: "post"
+   match  "/students/:id/edit", to:"students#update", via: "patch"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

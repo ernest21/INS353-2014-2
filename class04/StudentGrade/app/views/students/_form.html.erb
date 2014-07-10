@@ -1,6 +1,6 @@
-<%= form_for(@student) do |f| %>
+<%=  bootstrap_form_for(@student) do |f| %>
   <% if @student.errors.any? %>
-    <div id="error_explanation">
+    <div class ="alert alert-danger" id="error_explanation">
       <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
 
       <ul>
@@ -11,15 +11,16 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :university_id %><br>
-    <%= f.text_field :university_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.text_field :name %>
+	<%= f.text_field :university_id %>
+	<%= f.fields_for :grades do |ff| %>
+	  <h2>Grades</h2>
+    <%= ff.text_field :subject_name %>
+    <%= ff.text_field :subject_id %>
+    <%= ff.text_field :scrore %>
+    <% if ff.object.persisted? %>
+      <%= ff.check_box :_destroy %>
+    <% end %>
+  <% end %>
+	<%= f.submit "submit", class: "btn btn-large btn-primary" %>
 <% end %>
